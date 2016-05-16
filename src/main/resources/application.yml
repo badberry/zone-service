@@ -9,6 +9,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      naming-strategy: org.hibernate.cfg.DefaultNamingStrategy
     generate-ddl: true
     show-sql: true
     properties:

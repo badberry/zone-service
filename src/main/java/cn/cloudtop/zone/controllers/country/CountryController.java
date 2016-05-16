@@ -1,8 +1,10 @@
 package cn.cloudtop.zone.controllers.country;
 
+import cn.cloudtop.zone.controllers.province.ProvinceDetailVo;
 import cn.cloudtop.zone.exceptions.CountryNotExistsException;
 import cn.cloudtop.zone.service.country.Country;
 import cn.cloudtop.zone.service.country.CountryRepository;
+import cn.cloudtop.zone.service.province.Province;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -63,5 +65,20 @@ public class CountryController {
         }
         countryRepository.delete(id);
         return new CountryDeleteResponse();
+    }
+
+    @ApiOperation(value = "获取国家的所有省份信息", notes = "获取指定国家的所有省份信息.")
+    @ApiImplicitParam(name = "id", value = "国家id(32位字符串)", required = true, paramType = "path")
+    @RequestMapping("{id}/provinces")
+    public CountryProvinceGetResponse provinces(@PathVariable("id") String id) {
+        if (!countryRepository.exists(id)) {
+            throw new CountryNotExistsException(id);
+        }
+        Country country = countryRepository.getOne(id);
+        List<ProvinceDetailVo> provinceVos = Lists.newArrayList();
+        for (Province province : country.getProvinces()) {
+            provinceVos.add(province.toDetailVo());
+        }
+        return new CountryProvinceGetResponse(provinceVos);
     }
 }

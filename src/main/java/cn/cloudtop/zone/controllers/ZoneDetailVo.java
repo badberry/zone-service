@@ -1,4 +1,4 @@
-package cn.cloudtop.zone.controllers.country;
+package cn.cloudtop.zone.controllers;
 
 import io.swagger.annotations.ApiModelProperty;
 

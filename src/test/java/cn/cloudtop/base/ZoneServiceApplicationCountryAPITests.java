@@ -1,55 +1,24 @@
 package cn.cloudtop.base;
 
 import cn.cloudtop.zone.ZoneServiceApplication;
-import cn.cloudtop.zone.controllers.country.CountriesGetResponse;
 import cn.cloudtop.zone.controllers.country.CountryVo;
 import cn.cloudtop.zone.exceptions.ErrorCode;
-import cn.cloudtop.zone.service.country.Country;
-import cn.cloudtop.zone.service.country.CountryRepository;
-import com.jayway.restassured.config.JsonConfig;
-import com.jayway.restassured.config.RestAssuredConfig;
-import com.jayway.restassured.internal.mapper.ObjectMapperType;
-import com.jayway.restassured.matcher.ResponseAwareMatcher;
-import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
-import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
 
 import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ZoneServiceApplication.class)
 @WebAppConfiguration
 @IntegrationTest
-public class ZoneServiceApplicationTests {
-
-    @Autowired
-    private CountryRepository countryRepository;
-
-    private Country china;
-    private Country usa;
-
-    @Before
-    public void setUp() {
-
-        china = new Country("中国", "中国", "116.3683244", "39.915085", "China");
-        usa = new Country("美国", "美国", "116.3683244", "39.915085", "USA");
-        countryRepository.deleteAll();
-        countryRepository.save(Arrays.asList(china, usa));
-    }
+public class ZoneServiceApplicationCountryAPITests extends TestBase {
 
     @Test
     public void test_get_countries() {
@@ -68,7 +37,7 @@ public class ZoneServiceApplicationTests {
     public void test_create_country() {
         given().log().all()
                 .header("Content-Type", "application/json;charset=utf-8")
-                .body(new CountryVo("印度", "印度", "India", "sadlkfjsldfj", "39.915085"))
+                .body(new CountryVo("印度", "印度", "India", "39.915085", "39.915085"))
                 .when().post("/zone/country")
                 .then().log().all()
                 .statusCode(200)
@@ -100,4 +69,12 @@ public class ZoneServiceApplicationTests {
                 .body("errorCode", equalTo(ErrorCode.Country_Not_Existed));
     }
 
+    @Test
+    public void test_get_country_provinces() {
+        givens().when().get(String.format("/zone/country/%s/provinces", china.getId()))
+                .then().log().all()
+                .statusCode(200)
+                .body("success", equalTo(true))
+                .body("provinces", hasSize(2));
+    }
 }

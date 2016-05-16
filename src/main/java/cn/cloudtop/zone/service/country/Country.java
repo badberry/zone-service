@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Created by jackie on 16-4-22
+ * <p>
+ * 国家.
  */
 @Entity
 public class Country extends Zone {

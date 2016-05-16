@@ -7,14 +7,14 @@ import io.swagger.annotations.ApiModelProperty;
  * Created by jackie on 16-5-13
  */
 @ApiModel
-public class DetailMoreInfo {
+public class ChildMoreInfo {
 
     @ApiModelProperty("所在服务")
     private String service;
     @ApiModelProperty("相对路径")
     private String relativeUrl;
 
-    public DetailMoreInfo(String service, String relativeUrl) {
+    public ChildMoreInfo(String service, String relativeUrl) {
         this.service = service;
         this.relativeUrl = relativeUrl;
     }
