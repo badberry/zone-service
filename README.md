@@ -14,7 +14,3 @@ Zone Service(区域信息服务)
 5. 集中化日志实现
 6. 自动打包docker image
 7. 监控实现，并抽象出封装实现
-=======
-# zone-service
-
-区域信息服务
