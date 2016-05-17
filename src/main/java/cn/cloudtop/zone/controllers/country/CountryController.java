@@ -42,7 +42,7 @@ public class CountryController {
         Country countryEntity = new Country(country.getName(), country.getShortName(),
                 country.getLng(), country.getLat(), country.getPinyin());
         countryRepository.save(countryEntity);
-        return new CountryCreateResponse(countryEntity);
+        return new CountryCreateResponse(countryEntity.toDetailVo());
     }
 
     @ApiOperation(value = "获取国家信息", notes = "根据给定id获取国家信息")
@@ -69,7 +69,7 @@ public class CountryController {
 
     @ApiOperation(value = "获取国家的所有省份信息", notes = "获取指定国家的所有省份信息.")
     @ApiImplicitParam(name = "id", value = "国家id(32位字符串)", required = true, paramType = "path")
-    @RequestMapping("{id}/provinces")
+    @RequestMapping(value = "{id}/provinces", method = RequestMethod.GET, produces = "application/json")
     public CountryProvinceGetResponse provinces(@PathVariable("id") String id) {
         if (!countryRepository.exists(id)) {
             throw new CountryNotExistsException(id);

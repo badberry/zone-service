@@ -12,13 +12,13 @@ import io.swagger.annotations.ApiModelProperty;
 public class CountryCreateResponse extends RestResponse {
 
     @ApiModelProperty("创建好的国家")
-    private Country country;
+    private CountryDetailVo country;
 
-    public CountryCreateResponse(Country country) {
+    public CountryCreateResponse(CountryDetailVo country) {
         this.country = country;
     }
 
-    public Country getCountry() {
+    public CountryDetailVo getCountry() {
         return country;
     }
 }

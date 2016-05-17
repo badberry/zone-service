@@ -1,5 +1,7 @@
 package cn.cloudtop.base;
 
+import cn.cloudtop.zone.service.city.City;
+import cn.cloudtop.zone.service.city.CityRepository;
 import cn.cloudtop.zone.service.country.Country;
 import cn.cloudtop.zone.service.country.CountryRepository;
 import cn.cloudtop.zone.service.province.Province;
@@ -19,17 +21,21 @@ public abstract class TestBase {
     private CountryRepository countryRepository;
     @Autowired
     private ProvinceRepository provinceRepository;
+    @Autowired
+    private CityRepository cityRepository;
 
     protected Country china;
     protected Country usa;
 
     @Before
     public void setUp() {
+        deleteCity();
         deleteProvince();
         deleteCountry();
 
         initCountry();
         initProvince();
+        initCity();
     }
 
     private void initCountry() {
@@ -45,14 +51,27 @@ public abstract class TestBase {
     protected Province beijing;
     protected Province fujiansheng;
 
-    public void initProvince() {
+    private void initProvince() {
         beijing = new Province("北京", "北京", "116.405285", "39.904989", "Beijing", "中国,北京", china);
         fujiansheng = new Province("福建省", "福建", "119.306239", "26.075302", "Fujian", "中国,福建省", china);
 
         provinceRepository.save(Lists.newArrayList(beijing, fujiansheng));
     }
 
-    public void deleteProvince() {
+    private void deleteProvince() {
         provinceRepository.deleteAllInBatch();
+    }
+
+    protected City fuzhou;
+    protected City xiamen;
+
+    private void initCity() {
+        fuzhou = new City("福州市", "福州", "119.306239", "26.075302", "Fuzhou", "中国,福建省,福州市", "0591", "350001", fujiansheng);
+        xiamen = new City("厦门市", "厦门", "118.11022", "24.490474", "Xiamen", "中国,福建省,厦门市", "0592", "361003", fujiansheng);
+        cityRepository.save(Lists.newArrayList(fuzhou, xiamen));
+    }
+
+    private void deleteCity() {
+        cityRepository.deleteAllInBatch();
     }
 }

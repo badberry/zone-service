@@ -6,4 +6,5 @@ package cn.cloudtop.zone.exceptions;
 public interface ErrorCode {
 
     int Country_Not_Existed = 100001;
+    int Province_Not_Existed = 100002;
 }

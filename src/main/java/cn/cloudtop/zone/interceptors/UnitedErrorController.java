@@ -63,7 +63,7 @@ public class UnitedErrorController implements ErrorController {
         response.setStatus(200);
         if (getStatus(request) == HttpStatus.NOT_FOUND) {
             LOGGER.warn("no handle matched for this request.");
-            return new RestResponse(BasicErrorCode.Api_Not_Existed, "Not Found.");
+            return new RestResponse(BasicErrorCode.Api_Not_Existed, "API Not Found.");
         } else {
             RequestAttributes requestAttributes = new ServletRequestAttributes(request);
             Throwable throwable = getError(requestAttributes);

@@ -18,7 +18,7 @@ import static org.hamcrest.Matchers.*;
 @SpringApplicationConfiguration(classes = ZoneServiceApplication.class)
 @WebAppConfiguration
 @IntegrationTest
-public class ZoneServiceApplicationCountryAPITests extends TestBase {
+public class CountryAPITests extends TestBase {
 
     @Test
     public void test_get_countries() {
