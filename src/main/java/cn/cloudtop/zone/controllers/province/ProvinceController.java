@@ -33,8 +33,8 @@ public class ProvinceController {
     public ProvincesGetResponse get() {
         List<Province> provinces = Lists.newArrayList(provinceRepository.findAll());
         List<ProvinceDetailVo> provinceDetailVos = Lists.newArrayList();
-        for (Province country : provinces) {
-            provinceDetailVos.add(country.toDetailVo());
+        for (Province province : provinces) {
+            provinceDetailVos.add(province.toDetailVo());
         }
         return new ProvincesGetResponse(provinceDetailVos);
     }
@@ -70,7 +70,7 @@ public class ProvinceController {
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = "application/json")
     public ProvinceDeleteResponse delete(@PathVariable("id") String id) {
         if (!provinceRepository.exists(id)) {
-            throw new CountryNotExistsException(id);
+            throw new ProvinceNotExistsException(id);
         }
         provinceRepository.delete(id);
         return new ProvinceDeleteResponse();

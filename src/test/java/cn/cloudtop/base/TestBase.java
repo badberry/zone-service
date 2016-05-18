@@ -4,6 +4,8 @@ import cn.cloudtop.zone.service.city.City;
 import cn.cloudtop.zone.service.city.CityRepository;
 import cn.cloudtop.zone.service.country.Country;
 import cn.cloudtop.zone.service.country.CountryRepository;
+import cn.cloudtop.zone.service.districtCountry.DistrictCountry;
+import cn.cloudtop.zone.service.districtCountry.DistrictCountryRepository;
 import cn.cloudtop.zone.service.province.Province;
 import cn.cloudtop.zone.service.province.ProvinceRepository;
 import com.google.common.collect.Lists;
@@ -23,12 +25,15 @@ public abstract class TestBase {
     private ProvinceRepository provinceRepository;
     @Autowired
     private CityRepository cityRepository;
+    @Autowired
+    private DistrictCountryRepository districtCountryRepository;
 
     protected Country china;
     protected Country usa;
 
     @Before
     public void setUp() {
+        deleteDistrictCountry();
         deleteCity();
         deleteProvince();
         deleteCountry();
@@ -36,6 +41,7 @@ public abstract class TestBase {
         initCountry();
         initProvince();
         initCity();
+        initDistrictCountry();
     }
 
     private void initCountry() {
@@ -73,5 +79,18 @@ public abstract class TestBase {
 
     private void deleteCity() {
         cityRepository.deleteAllInBatch();
+    }
+
+    protected DistrictCountry jimeiqu;
+    protected DistrictCountry simingqu;
+
+    private void initDistrictCountry() {
+        jimeiqu = new DistrictCountry("集美区", "集美", "118.09719", "24.57584", "Jimei", "中国,福建省,厦门市,集美区", "361021", xiamen);
+        simingqu = new DistrictCountry("思明区", "思明", "118.08233", "24.44543", "Siming", "中国,福建省,厦门市,思明区", "361001", xiamen);
+        districtCountryRepository.save(Lists.newArrayList(jimeiqu, simingqu));
+    }
+
+    private void deleteDistrictCountry() {
+        districtCountryRepository.deleteAllInBatch();
     }
 }

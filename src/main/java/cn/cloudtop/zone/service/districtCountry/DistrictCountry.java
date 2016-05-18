@@ -1,5 +1,6 @@
 package cn.cloudtop.zone.service.districtCountry;
 
+import cn.cloudtop.zone.controllers.districtCountry.DistrictCountryDetailVo;
 import cn.cloudtop.zone.service.Zone;
 import cn.cloudtop.zone.service.city.City;
 
@@ -16,7 +17,7 @@ public class DistrictCountry extends Zone {
     private String mergeName;
     private String zipCode;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cityId")
     private City city;
 
@@ -54,5 +55,10 @@ public class DistrictCountry extends Zone {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public DistrictCountryDetailVo toDetailVo() {
+        return new DistrictCountryDetailVo(this.getId(), this.getName(), this.getShortName(), this.getLng(), this.getLat(),
+                this.getPinyin(), this.getMergeName(), this.getZipCode(), this.getCity().getId(), this.getCity().getName());
     }
 }
