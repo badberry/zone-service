@@ -15,7 +15,6 @@
         <groupId>cn.cloudtop.service</groupId>
         <artifactId>service-parent</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <dependencies>
