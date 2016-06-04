@@ -6,6 +6,7 @@ import cn.cloudtop.zone.service.city.CityRepository;
 import cn.cloudtop.zone.service.districtCountry.DistrictCountry;
 import cn.cloudtop.zone.service.districtCountry.DistrictCountryRepository;
 import com.google.common.collect.Lists;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("zone/districtCountry")
+@Api(value = "DistrictCountryController", description = "区县接口")
 public class DistrictCountryController {
 
     @Autowired
@@ -38,7 +40,7 @@ public class DistrictCountryController {
     }
 
     @ApiOperation(value = "创建区县", notes = "创建区县")
-    @ApiImplicitParam(name = "districtCountry", value = "区县信息", required = true, paramType = "body", dataType = "CountryVo")
+    @ApiImplicitParam(name = "districtCountry", value = "区县信息", required = true, paramType = "body", dataType = "DistrictCountryVo")
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public DistrictCountryCreateResponse create(@Valid @RequestBody DistrictCountryVo districtCountry) {
         if (!cityRepository.exists(districtCountry.getCityId())) {

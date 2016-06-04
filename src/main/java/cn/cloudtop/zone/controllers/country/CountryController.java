@@ -6,6 +6,7 @@ import cn.cloudtop.zone.service.country.Country;
 import cn.cloudtop.zone.service.country.CountryRepository;
 import cn.cloudtop.zone.service.province.Province;
 import com.google.common.collect.Lists;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("zone/country")
+@Api(value = "CountryController", description = "国家接口")
 public class CountryController {
 
     @Autowired
@@ -68,7 +70,7 @@ public class CountryController {
     }
 
     @ApiOperation(value = "获取国家的所有省份信息", notes = "获取指定国家的所有省份信息.")
-    @ApiImplicitParam(name = "id", value = "国家id(32位字符串)", required = true, paramType = "path")
+    @ApiImplicitParam(name = "id", value = "国家id(32位字符串)", required = true, paramType = "path", dataType = "string")
     @RequestMapping(value = "{id}/provinces", method = RequestMethod.GET, produces = "application/json")
     public CountryProvinceGetResponse provinces(@PathVariable("id") String id) {
         if (!countryRepository.exists(id)) {

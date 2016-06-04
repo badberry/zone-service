@@ -1,6 +1,7 @@
-package cn.cloudtop.zone;
+package cn.cloudtop.basic;
 
 import cn.cloudtop.zone.interceptors.UnitedErrorController;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,22 +20,30 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 public class ApiDocsConfig {
 
+    @Value("${service.name}")
+    private String serviceName;
+    @Value("${service.desc}")
+    private String description;
+    @Value("${service.creator}")
+    private String creator;
+    @Value("${service.version}")
+    private String version;
+
     @Bean
     public Docket apiConfig() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("zone")
+                .groupName(serviceName)
                 .apiInfo(apiInfo())
                 .select()
-                .paths(regex("/zone.*"))
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("zone service")
-                .description("provide country,province,city,district/country.")
-                .contact("jackie.han@cloudtopcn.com")
-                .version("1.0")
+                .title(serviceName)
+                .description(description)
+                .contact(creator)
+                .version(version)
                 .build();
     }
 }

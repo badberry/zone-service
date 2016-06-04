@@ -8,6 +8,7 @@ import cn.cloudtop.zone.service.districtCountry.DistrictCountry;
 import cn.cloudtop.zone.service.province.Province;
 import cn.cloudtop.zone.service.province.ProvinceRepository;
 import com.google.common.collect.Lists;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("zone/city")
+@Api(value = "CityController", description = "城市接口")
 public class CityController {
     @Autowired
     private CityRepository cityRepository;
@@ -39,7 +41,7 @@ public class CityController {
     }
 
     @ApiOperation(value = "创建城市", notes = "创建城市")
-    @ApiImplicitParam(name = "city", value = "城市信息", required = true, paramType = "body", dataType = "CountryVo")
+    @ApiImplicitParam(name = "city", value = "城市信息", required = true, paramType = "body", dataType = "CityVo")
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public CityCreateResponse create(@Valid @RequestBody CityVo city) {
         if (!provinceRepository.exists(city.getProvinceId())) {
@@ -76,7 +78,7 @@ public class CityController {
     }
 
     @ApiOperation(value = "获取城市的所有区县信息", notes = "获取指定城市的所有区县信息.")
-    @ApiImplicitParam(name = "id", value = "城市id(32位字符串)", required = true, paramType = "path")
+    @ApiImplicitParam(name = "id", value = "城市id(32位字符串)", required = true, paramType = "path", dataType = "string")
     @RequestMapping(value = "{id}/districtCounties", method = RequestMethod.GET, produces = "application/json")
     public CityDistrictCountryGetResponse provinces(@PathVariable("id") String id) {
         if (!cityRepository.exists(id)) {
