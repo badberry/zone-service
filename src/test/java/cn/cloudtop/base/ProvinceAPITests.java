@@ -2,7 +2,7 @@ package cn.cloudtop.base;
 
 import cn.cloudtop.zone.ZoneServiceApplication;
 import cn.cloudtop.zone.controllers.province.ProvinceVo;
-import cn.cloudtop.zone.exceptions.ErrorCode;
+import cn.cloudtop.zone.controllers.ErrorCode;
 import com.jayway.restassured.specification.RequestSpecification;
 import org.junit.Test;
 import org.junit.runner.RunWith;

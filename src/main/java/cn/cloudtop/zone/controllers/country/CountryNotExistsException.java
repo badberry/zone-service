@@ -1,6 +1,7 @@
-package cn.cloudtop.zone.exceptions;
+package cn.cloudtop.zone.controllers.country;
 
-import cn.cloudtop.basic.RestException;
+import cn.cloudtop.strawberry.rest.RestException;
+import cn.cloudtop.zone.controllers.ErrorCode;
 
 /**
  * Created by jackie on 16-4-26

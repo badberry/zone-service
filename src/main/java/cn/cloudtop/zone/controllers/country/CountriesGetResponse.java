@@ -1,7 +1,6 @@
 package cn.cloudtop.zone.controllers.country;
 
-import cn.cloudtop.basic.RestResponse;
-import cn.cloudtop.zone.service.country.Country;
+import cn.cloudtop.strawberry.rest.RestResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -15,6 +14,10 @@ public class CountriesGetResponse extends RestResponse {
 
     @ApiModelProperty("国家列表集合")
     public List<CountryDetailVo> countries;
+
+    protected CountriesGetResponse() {
+
+    }
 
     public CountriesGetResponse(List<CountryDetailVo> countries) {
         this.countries = countries;

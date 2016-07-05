@@ -1,6 +1,6 @@
 package cn.cloudtop.zone.controllers.country;
 
-import cn.cloudtop.basic.RestResponse;
+import cn.cloudtop.strawberry.rest.RestResponse;
 import cn.cloudtop.zone.controllers.province.ProvinceDetailVo;
 
 import java.util.List;
@@ -11,6 +11,9 @@ import java.util.List;
 public class CountryProvinceGetResponse extends RestResponse {
 
     private List<ProvinceDetailVo> provinces;
+
+    protected CountryProvinceGetResponse() {
+    }
 
     public CountryProvinceGetResponse(List<ProvinceDetailVo> provinces) {
         this.provinces = provinces;

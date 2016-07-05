@@ -1,6 +1,6 @@
 package cn.cloudtop.zone.controllers.city;
 
-import cn.cloudtop.basic.ChildMoreInfo;
+import cn.cloudtop.strawberry.rest.ChildMore;
 import cn.cloudtop.zone.controllers.ZoneDetailVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -22,7 +22,7 @@ public class CityDetailVo extends ZoneDetailVo {
     @ApiModelProperty("所属省份名称")
     private String provinceName;
     @ApiModelProperty("获取当前城市的所有区县信息")
-    private ChildMoreInfo districtCountries;
+    private ChildMore districtCountries;
 
     public CityDetailVo(String id, String name, String shortName, String lng, String lat,
                         String pinyin, String mergeName, String cityCode, String zipCode,
@@ -33,7 +33,7 @@ public class CityDetailVo extends ZoneDetailVo {
         this.zipCode = zipCode;
         this.provinceId = provinceId;
         this.provinceName = provinceName;
-        this.districtCountries = new ChildMoreInfo("zoneService",
+        this.districtCountries = new ChildMore("zoneService",
                 String.format("/city/%s/districtCountries", id));
     }
 
@@ -57,7 +57,7 @@ public class CityDetailVo extends ZoneDetailVo {
         return provinceName;
     }
 
-    public ChildMoreInfo getDistrictCountries() {
+    public ChildMore getDistrictCountries() {
         return districtCountries;
     }
 }

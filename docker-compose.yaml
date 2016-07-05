@@ -1,0 +1,28 @@
+myql:
+  image: registry.dev/mysql:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=123456
+  volumes:
+    - /home/jackie/docker/mysql:/var/lib/mysql
+  ports:
+    - "3306:3306"
+  container_name: zone-mysql
+
+etcd:
+  image: registry.dev/etcd:latest
+  volumes:
+    - /usr/share/ca-certificates/:/etc/ssl/certs
+  ports:
+    - "4001:4001"
+    - "2380:2380"
+    - "2379:2379"
+  container_name: service-registry-etcd
+  command: >
+    -name etcd0
+    -advertise-client-urls http://${HostIP}:2379,http://${HostIP}:4001
+    -listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001
+    -initial-advertise-peer-urls http://${HostIP}:2380
+    -listen-peer-urls http://0.0.0.0:2380
+    -initial-cluster-token etcd-cluster-1
+    -initial-cluster etcd0=http://${HostIP}:2380
+    -initial-cluster-state new

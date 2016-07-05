@@ -1,4 +1,4 @@
-package cn.cloudtop.zone.exceptions;
+package cn.cloudtop.zone.controllers;
 
 /**
  * Created by jackie on 16-4-26

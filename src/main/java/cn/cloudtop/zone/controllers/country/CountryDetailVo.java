@@ -1,6 +1,6 @@
 package cn.cloudtop.zone.controllers.country;
 
-import cn.cloudtop.basic.ChildMoreInfo;
+import cn.cloudtop.strawberry.rest.ChildMore;
 import cn.cloudtop.zone.controllers.ZoneDetailVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,16 +12,20 @@ import io.swagger.annotations.ApiModelProperty;
 public class CountryDetailVo extends ZoneDetailVo {
 
     @ApiModelProperty("获取当前国家的所有省份信息")
-    private ChildMoreInfo provinces;
+    private ChildMore provinces;
+
+    protected CountryDetailVo() {
+        super();
+    }
 
 
     public CountryDetailVo(String id, String name, String shortName,
                            String lng, String lat, String pinyin) {
         super(id, name, shortName, lng, lat, pinyin);
-        this.provinces = new ChildMoreInfo("zoneService", String.format("/country/%s/provinces", id));
+        this.provinces = new ChildMore("zoneService", String.format("/country/%s/provinces", id));
     }
 
-    public ChildMoreInfo getProvinces() {
+    public ChildMore getProvinces() {
         return provinces;
     }
 }

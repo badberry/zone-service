@@ -1,6 +1,6 @@
 package cn.cloudtop.zone.controllers.province;
 
-import cn.cloudtop.basic.RestResponse;
+import cn.cloudtop.strawberry.rest.RestResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

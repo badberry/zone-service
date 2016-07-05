@@ -9,6 +9,7 @@ import cn.cloudtop.zone.service.districtCountry.DistrictCountryRepository;
 import cn.cloudtop.zone.service.province.Province;
 import cn.cloudtop.zone.service.province.ProvinceRepository;
 import com.google.common.collect.Lists;
+import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,15 +34,18 @@ public abstract class TestBase {
 
     @Before
     public void setUp() {
-        deleteDistrictCountry();
-        deleteCity();
-        deleteProvince();
-        deleteCountry();
-
         initCountry();
         initProvince();
         initCity();
         initDistrictCountry();
+    }
+
+    @After
+    public void teardown() {
+        deleteDistrictCountry();
+        deleteCity();
+        deleteProvince();
+        deleteCountry();
     }
 
     private void initCountry() {

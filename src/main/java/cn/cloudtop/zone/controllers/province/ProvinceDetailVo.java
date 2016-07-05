@@ -1,6 +1,6 @@
 package cn.cloudtop.zone.controllers.province;
 
-import cn.cloudtop.basic.ChildMoreInfo;
+import cn.cloudtop.strawberry.rest.ChildMore;
 import cn.cloudtop.zone.controllers.ZoneDetailVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,7 +18,11 @@ public class ProvinceDetailVo extends ZoneDetailVo {
     @ApiModelProperty("所属国家名称")
     private String countryName;
     @ApiModelProperty("获取所有城市方法")
-    private ChildMoreInfo cities;
+    private ChildMore cities;
+
+    protected ProvinceDetailVo() {
+
+    }
 
     public ProvinceDetailVo(String id, String name, String shortName,
                             String lng, String lat, String pinyin, String mergeName,
@@ -27,7 +31,7 @@ public class ProvinceDetailVo extends ZoneDetailVo {
         this.mergeName = mergeName;
         this.countryId = countryId;
         this.countryName = countryName;
-        this.cities = new ChildMoreInfo("zoneService", String.format("/province/%s/cities", id));
+        this.cities = new ChildMore("zoneService", String.format("/province/%s/cities", id));
     }
 
     public String getMergeName() {
@@ -42,7 +46,7 @@ public class ProvinceDetailVo extends ZoneDetailVo {
         return countryName;
     }
 
-    public ChildMoreInfo getCities() {
+    public ChildMore getCities() {
         return cities;
     }
 }

@@ -2,10 +2,12 @@ package cn.cloudtop.zone.controllers;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 /**
  * Created by jackie on 16-5-13
  */
-public abstract class ZoneDetailVo {
+public abstract class ZoneDetailVo implements Serializable {
     @ApiModelProperty("唯一标识符")
     private String id;
     @ApiModelProperty("名称")
@@ -18,6 +20,9 @@ public abstract class ZoneDetailVo {
     private String lat;
     @ApiModelProperty("拼音")
     private String pinyin;
+
+    protected ZoneDetailVo() {
+    }
 
     public ZoneDetailVo(String id, String name, String shortName, String lng, String lat, String pinyin) {
         this.id = id;

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.156/zone?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.0.133/zone?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -15,6 +15,17 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  redis:
+    host: 192.168.0.133
+    port: 6379
+    password:
+    database: 5
+    timeout: 0
+    pool:
+      max-active: 18
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
   mvc:
     throw-exception-if-no-handler-found: true
 server:
@@ -27,12 +38,12 @@ logging:
     org.springframework: error
     springfox.documentation: error
     java.sql: error
-  file: /var/logs/zone/zone.log
-service:
-  name: zone-service
-  version: v1
-  desc: provide country,province,city,district/country.
-  creator: jackie.han@cloudtopcn.com
+  file: /var/logs/zone/zone
+info:
+  app:
+    name: zone-service
+    description: provide country,province,city,district/country operators.
+    version: v1
+    creator: jackie.han@cloudtopcn.com
 registry:
-  url: http://192.168.1.156/
-  port: 2379
+  url: http://192.168.0.133:2379/

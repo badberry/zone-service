@@ -1,7 +1,7 @@
 package cn.cloudtop.zone.controllers.province;
 
 import cn.cloudtop.zone.controllers.city.CityDetailVo;
-import cn.cloudtop.zone.exceptions.CountryNotExistsException;
+import cn.cloudtop.zone.controllers.country.CountryNotExistsException;
 import cn.cloudtop.zone.service.city.City;
 import cn.cloudtop.zone.service.country.Country;
 import cn.cloudtop.zone.service.country.CountryRepository;

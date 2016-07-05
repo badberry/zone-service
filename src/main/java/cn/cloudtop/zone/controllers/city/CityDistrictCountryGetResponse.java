@@ -1,6 +1,6 @@
 package cn.cloudtop.zone.controllers.city;
 
-import cn.cloudtop.basic.RestResponse;
+import cn.cloudtop.strawberry.rest.RestResponse;
 import cn.cloudtop.zone.controllers.districtCountry.DistrictCountryDetailVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
